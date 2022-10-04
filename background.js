@@ -9,7 +9,7 @@ function onCreated() {
 
 browser.menus.create({
   id: "battle-royale-to-markdown",
-  title: "Battle Royale to Markdown",
+  title: "To Markdown",
   contexts: ["all"],
   documentUrlPatterns: ["https://brantsteele.net/*"]
 }, onCreated);
