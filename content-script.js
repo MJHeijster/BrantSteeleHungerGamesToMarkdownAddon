@@ -5,14 +5,13 @@ function copySelection(event) {
         var turndownService = new TurndownService()
         turndownService.remove('img');
         convertString = convertString.replaceAll(/(<img[^>]+>(?:<\/img>)?)/g, "").replaceAll(/(<a href[^>]*>[^>]*<\/a>?)/g, "").replaceAll(/(<table[^>]*>)/g, "")
-            .replaceAll(/(<font[^>]*>)/g, "").replaceAll(/(<div[^>]*>)/g, "").replaceAll(/(<br \/><br \/>)/g, "<br />").replaceAll(/(<br><br>)/g, "<br>").replace(/(<br \/>)/,"")
-            .replaceAll("<td>", "").replaceAll("<tr>", "").replaceAll("</td>", "").replaceAll("</tr>", "").replaceAll("</font>", "").replaceAll("</table>", "")
+            .replaceAll(/(<font[^>]*>)/g, "").replaceAll(/(<div[^>]*>)/g, "").replaceAll(/(<br \/><br \/>)/g, "<br />").replaceAll(/(<br><br>)/g, "<br>").replace(/(<br ?\/?>)/,"")
+            .replaceAll("<td>", "").replaceAll("<tr>", "").replaceAll("</td>", "").replaceAll("</tr>", "").replaceAll("</font>", "").replaceAll("</table>", "").replaceAll("<tbody>", "").replaceAll("</tbody>", "")
             ;
         var markdown = turndownService.turndown(convertString) 
-        var copyText = markdown.replaceAll(/(?:\r\n|\r|\n)/g, "\r\n").replaceAll(/(?:\r\n|\r|\n)/g, "\r\n");
   
         event.preventDefault();
-  event.clipboardData.setData('text/plain', copyText);
+  event.clipboardData.setData('text/plain', markdown);
   }
 
   document.addEventListener("copy", copySelection, true);
